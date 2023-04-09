@@ -21,6 +21,7 @@ const getLogin = (request, response) => {
         }
   
         if (results.rows.length > 0) {
+          var roles = results.rows[0].value;
           bcrypt.compare(
             password,
             results.rows[0].hashed_password,
@@ -33,6 +34,7 @@ const getLogin = (request, response) => {
                   success: true,
                   message: "Successful login",
                   data: results,
+                  role: roles,
                 });
               } else {
                 response.send({

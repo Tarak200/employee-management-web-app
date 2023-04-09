@@ -24,11 +24,15 @@ export const Registration = () => {
     });
   };
 
+  const goback = () => {
+    navigate("/")
+  };
 
   return(
 
     <div className="registration">
-        <h1>Registration</h1>
+    <h2>Registration</h2>
+      <div className='reg eid'>
         <label>Employee ID</label>
         <input
           type="text"
@@ -37,15 +41,19 @@ export const Registration = () => {
             setUsernameReg(e.target.value);
           }}
         />
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder='Enter Password to be set'
-          onChange={(e) => {
-            setPasswordReg(e.target.value);
-          }}
-        />
-        <button onClick={register}> Register </button>
+        </div>
+      <div className='reg pswd'>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder='Enter Password to be set'
+            onChange={(e) => {
+              setPasswordReg(e.target.value);
+            }}
+          />
+        </div>
+          <button onClick={register}> Register </button>
+          <button onClick={goback}> Sign In </button>
       </div>
   );
 }

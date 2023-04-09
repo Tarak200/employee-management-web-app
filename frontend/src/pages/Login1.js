@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState}  from 'react'
 import Axios from 'axios'
-// import "./css/login.css"
 import { useNavigate } from 'react-router-dom';
 
-export const Login = () => {
-
-  // const [usernameReg, setUsernameReg] = useState('')
-  // const [passwordReg, setPasswordReg] = useState('')
+const Login1 = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +11,14 @@ export const Login = () => {
   const  [ msg, setMsg] = useState("Login In");
   const [userId, setUserID] = useState("");
 
+  const navigate = useNavigate();
+  const refreshToHome = () =>{
+    navigate("/");
+  }
+
+    const refreshOnSpot = () =>{
+        window.location.reload(true);
+    }
 
   const login1 = () => {
     Axios.post('http://localhost:3001/login', {
@@ -24,9 +28,9 @@ export const Login = () => {
       console.log("aditya",response.data);
       if(response.data.success) {
         setloginStatus(response.data.success);
-        setUserID(response.data.data.rows[0].id);
-        setMsg(response.data.message);
-        refreshToHome();
+        // setUserID(response.data.data.rows[0].id);
+        // setMsg(response.data.message);
+        refreshOnSpot();
       } else {
         setloginStatus(response.data.success);
         setMsg(response.data.message);
@@ -40,46 +44,16 @@ export const Login = () => {
   };
 
 
-  const refreshOnSpot = () =>{
-    window.location.reload(true);
-  }
-  const navigate = useNavigate();
-  const refreshToHome = () =>{
-    navigate("/home");
-  }
-  const logout = () => {
-    Axios.get('http://localhost:3001/logout')
-    .then((response) => {
-      // alert("Sure u want to log out");
-      console.log(response);
-      refreshOnSpot();
-
-
-    }); 
-  };
-
-  useEffect(() => {
-    Axios.get("http://localhost:3001/login-session").then((response) => {
-      if(response.data.loggedIn === true) {
-        console.log(response)
-        setloginStatus(true);
-        setMsg("Logged Into User ID")
-        setUserID(response.data.user.rows[0].id)
-      }
-    });
-  }, []);
-
   return (
-    
     <div className='login'>
-    <h1> {msg} {userId}</h1>
+    <h3> {msg} {userId}</h3>
     <div className='login2'>
-        {!loginStatus && (<>
+     <>
         <div className='uname'>
           <label>Employee ID</label>
             <input 
               type="test"
-              placeholder="Enter Student ID"
+              placeholder="Enter Employee ID"
               onChange={(e) => {
                 setUsername(e.target.value)
               }}
@@ -94,12 +68,11 @@ export const Login = () => {
               }}
               /></div>
             <button onClick={login1}>Login</button>
-            <button onClick={signup}>SignUp</button>
-        </>)}
-        {loginStatus && (<>
-          <button onClick={logout}>Log Out</button>
-        </>)}
+            <button onClick={signup}>Sign Up</button>
+        </>
     </div>  
-  </div>  
-  );
+  </div>
+  )
 }
+
+export default Login1
