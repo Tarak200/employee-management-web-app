@@ -46,7 +46,7 @@ const Login1 = () => {
 
   return (
     <div className='login'>
-    <h3> {msg} {userId}</h3>
+    {/* <h3> {msg} {userId}</h3> */}
     <div className='login2'>
      <>
         <div className='uname'>
