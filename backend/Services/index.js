@@ -43,6 +43,21 @@ app.post("/login", db.getLogin);
 app.get("/logout", db.getLogout);
 app.get("/login-session", db.getLoginSession);
 app.post("/registration", db.getRegistration);
+app.get("/portalmaster", db.getPortalMaster);
+app.post("/assign", db.getAssign);
+app.post("/approve", db.getApprove);
+app.post("/drop", db.getDrop);
+app.post("/deleteleave", db.getDeleteleave);
+app.post("/empdetail", db.getempdetail);
+app.post("/edu", db.getedu);
+app.post("/dependent", db.getDependent);
+app.post("/workexp", db.getworkexp);
+app.post("/leaveapp", db.getleaveapp);
+app.post("/leaveapphr", db.getleaveapphr);
+app.post("/leaveappsubmit", db.getleaveappsubmit);
+app.post("/hruser", db.gethruser);
+app.post("/salary", db.getsal);
+
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);

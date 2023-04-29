@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import './css/Registration.css'
 
 export const Registration = () => {
 
@@ -24,7 +25,7 @@ export const Registration = () => {
     });
   };
 
-  const goback = () => {
+  const signin = () => {
     navigate("/")
   };
 
@@ -32,7 +33,7 @@ export const Registration = () => {
 
     <div className="registration">
     <h2>Registration</h2>
-      <div className='reg eid'>
+      <div className='reg_eid'>
         <label>Employee ID</label>
         <input
           type="text"
@@ -42,7 +43,7 @@ export const Registration = () => {
           }}
         />
         </div>
-      <div className='reg pswd'>
+      <div className='reg_pswd'>
           <label>Password</label>
           <input
             type="password"
@@ -52,8 +53,8 @@ export const Registration = () => {
             }}
           />
         </div>
-          <button onClick={register}> Register </button>
-          <button onClick={goback}> Sign In </button>
+          <button class="button-74" onClick={register}> Register </button>
+          <button class="button-74" onClick={signin}> Sign In </button>
       </div>
   );
 }

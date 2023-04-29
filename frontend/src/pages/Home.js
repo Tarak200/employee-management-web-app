@@ -68,7 +68,6 @@ export const Home = () => {
             (<></>)
         :   
             (<>
-          <h2>Employee Management System</h2>
           <Login1/>
           </>)}
     </div>

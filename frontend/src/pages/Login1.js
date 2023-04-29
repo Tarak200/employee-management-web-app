@@ -1,6 +1,7 @@
-import React, {useState}  from 'react'
+import React, {Component, useState}  from 'react'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import '../components/css/Login1.css'
 
 const Login1 = () => {
 
@@ -8,8 +9,8 @@ const Login1 = () => {
   const [password, setPassword] = useState("");
 
   const [loginStatus, setloginStatus] = useState(false);
-  const  [ msg, setMsg] = useState("Login In");
-  const [userId, setUserID] = useState("");
+  // const  [ msg, setMsg] = useState("Login In");
+  // const [userId, setUserID] = useState("");
 
   const navigate = useNavigate();
   const refreshToHome = () =>{
@@ -33,7 +34,7 @@ const Login1 = () => {
         refreshOnSpot();
       } else {
         setloginStatus(response.data.success);
-        setMsg(response.data.message);
+        // setMsg(response.data.message);
       }
       // console.log(response)
     }); 
@@ -45,9 +46,9 @@ const Login1 = () => {
 
 
   return (
-    <div className='login'>
-    {/* <h3> {msg} {userId}</h3> */}
-    <div className='login2'>
+    // { <h3> {msg} {userId}</h3> }
+    <div className='login' >
+      <h2>Employee Management System</h2>
      <>
         <div className='uname'>
           <label>Employee ID</label>
@@ -67,11 +68,10 @@ const Login1 = () => {
                 setPassword(e.target.value)
               }}
               /></div>
-            <button onClick={login1}>Login</button>
-            <button onClick={signup}>Sign Up</button>
+            <button class="button-74" onClick={login1}>Login</button>
+            <button class="button-74" onClick={signup}>Sign Up</button>
         </>
     </div>  
-  </div>
   )
 }
 

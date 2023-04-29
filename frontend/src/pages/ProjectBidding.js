@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Axios from 'axios'
 import { AdminNavbar } from './AdminNavbar'
 import Login1 from './Login1';
+import { useNavigate } from 'react-router';
 
 const ProjectBidding = () => {
 
@@ -12,12 +13,18 @@ const ProjectBidding = () => {
     window.location.reload(true);
   }
 
+  const navigate = useNavigate();
+  const refreshToHome = () =>{
+    navigate("/");
+  }
+
   const logout = () => {
     Axios.get('http://localhost:3001/logout')
     .then((response) => {
       // alert("Sure u want to log out");
       console.log(response);
-      refreshOnSpot();
+      // refreshOnSpot();
+      refreshToHome();
     }); 
     };
 

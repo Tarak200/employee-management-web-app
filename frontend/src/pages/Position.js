@@ -3,14 +3,16 @@ import Axios from 'axios'
 import { AdminNavbar } from './AdminNavbar';
 import { HrNavbar } from './HrNavbar';
 import Login1 from './Login1';
+import { useNavigate } from 'react-router';
 
 const Position = () => {
 
   const [loginStatus, setloginStatus] = useState(false);
   const [Role,setRole] = useState("");
 
-  const refreshOnSpot = () =>{
-    window.location.reload(true);
+  const navigate = useNavigate();
+  const refreshToHome = () =>{
+    navigate("/");
   }
 
   const logout = () => {
@@ -18,7 +20,8 @@ const Position = () => {
     .then((response) => {
       // alert("Sure u want to log out");
       console.log(response);
-      refreshOnSpot();
+      refreshToHome();
+      // refreshOnSpot();
     }); 
     };
 

@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react'
 import Axios from 'axios'
 import { HrNavbar } from './HrNavbar'
 import Login1 from './Login1';
+import { useNavigate } from 'react-router';
 
 const Company = () => {
 
   const [loginStatus, setloginStatus] = useState(false);
   const [Role,setRole] = useState("");
 
-  const refreshOnSpot = () =>{
-    window.location.reload(true);
+
+  const navigate = useNavigate();
+  const refreshToHome = () =>{
+    navigate("/");
   }
 
   const logout = () => {
@@ -17,7 +20,8 @@ const Company = () => {
     .then((response) => {
       // alert("Sure u want to log out");
       console.log(response);
-      refreshOnSpot();
+      refreshToHome();
+      // refreshOnSpot();
     }); 
     };
 
