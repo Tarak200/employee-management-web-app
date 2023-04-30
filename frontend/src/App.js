@@ -11,7 +11,7 @@ import ProjectBidding from './pages/ProjectBidding';
 import User from './pages/User';
 import Salary from './pages/Salary';
 import LeaveApplicationHr from './pages/LeaveApplicationHr';
-import Company from './pages/Company';
+// import Company from './pages/Company';
 import PersonalInformation from './pages/PersonalInformation';
 import Education from './pages/Education';
 import Dependents from './pages/Dependents';
@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/employee" element={<User/>}></Route>
         <Route exact path="/salary" element={<Salary/>}></Route>
         <Route exact path="/leave-application-hr" element={<LeaveApplicationHr/>}></Route>
-        <Route exact path="/company" element={<Company/>}></Route>
+        {/* <Route exact path="/company" element={<Company/>}></Route> */}
 
         <Route exact path="/personal-info" element={<PersonalInformation/>}></Route>
         <Route exact path="/education" element={<Education/>}></Route>

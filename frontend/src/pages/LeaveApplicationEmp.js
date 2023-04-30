@@ -100,6 +100,12 @@ const LeaveApplicationEmp = () => {
     });
   };
 
+  const [showForm, setShowForm] = useState(false);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   useEffect(() => {
     Axios.get("http://localhost:3001/login-session").then((response) => {
       console.log(response);
@@ -121,7 +127,8 @@ const LeaveApplicationEmp = () => {
           <div>
             <h2>Employee Leave Application</h2>
             <Table d={data} />
-            <h3>Submit a New Leave Application</h3>
+            <a href="#" onClick={toggleForm}>New Leave Application Form</a>
+            {showForm && (
               <form onSubmit={submitHandler}>
                 <div>
                   <label htmlFor="leavetype">Leave Type</label>
@@ -169,6 +176,7 @@ const LeaveApplicationEmp = () => {
                 </div>
                 <button type="submit">Submit</button>
               </form>
+            )}
           </div>
         </>
       ) : (

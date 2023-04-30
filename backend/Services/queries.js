@@ -153,6 +153,48 @@ const getLogin = (request, response) => {
       });
   };
 
+  const getUpdate = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const currwork_role = request.body.currwork_role;
+
+    pool.query("UPDATE currwork SET currwork_role = $2 WHERE id = $1", [id, currwork_role], (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      });
+  };
+
+  const getUpdatepos = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const currwork_position = request.body.currwork_position;
+
+    pool.query("UPDATE currwork SET currwork_position = $2 WHERE id = $1", [id, currwork_position], (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      });
+  };
+
+  const getUpdatedep = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const currwork_department = request.body.currwork_department;
+
+    pool.query("UPDATE currwork SET currwork_department = $2 WHERE id = $1", [id, currwork_department], (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      });
+  };
+
   const getDrop = (request, response) => {
 
     // console.log(request.body)
@@ -307,13 +349,137 @@ const getLogin = (request, response) => {
     );
   };
 
+  const getpersoinfosubmit = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const FirstName = request.body.FirstName;
+    const LastName = request.body.LastName;
+    const Gendor = request.body.Gendor;
+    const DoB = request.body.DoB;
+    const Hometown = request.body.Hometown;
+    const PanCard = request.body.PanCard;
+    const PhoneNumber = request.body.PhoneNumber;
+
+    pool.query(
+      "INSERT INTO employeedetail VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",[id, FirstName, LastName, Gendor, DoB, Hometown, PanCard, PhoneNumber],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getedusubmit = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const schooluni = request.body.schooluni;
+    const degree = request.body.degree;
+    const grade = request.body.grade;
+    const passyear = request.body.passyear;
+
+    pool.query(
+      "INSERT INTO education VALUES ($1, $2, $3, $4, $5)",[id, schooluni, degree, grade, passyear],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getexpsubmit = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const company = request.body.company;
+    const designation = request.body.designation;
+    const joindate = request.body.joindate;
+    const enddate = request.body.enddate;
+
+    pool.query(
+      "INSERT INTO workexp VALUES ($1, $2, $3, $4, $5)",[id, company, designation, joindate, enddate],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getdepsubmit = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const dep_name = request.body.dep_name;
+    const dep_relationship = request.body.dep_relationship;
+    const dep_dob = request.body.dep_dob;
+    const dep_number = request.body.dep_number;
+
+    pool.query(
+      "INSERT INTO dependents VALUES ($1, $2, $3, $4, $5)",[id, dep_name, dep_relationship, dep_dob, dep_number],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getcurrworksubmit = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const currwork_role = request.body.currwork_role;
+    const currwork_position = request.body.currwork_position;
+    const currwork_department = request.body.currwork_department;
+    const currwork_joindate = request.body.currwork_joindate;
+
+    pool.query(
+      "INSERT INTO currwork VALUES ($1, $2, $3, $4, $5)",[id, currwork_role, currwork_position, currwork_department, currwork_joindate],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getsalsubmit = (request, response) => {
+
+    // console.log(request.body)
+    const id = request.body.id;
+    const accno = request.body.accno;
+    const bankname = request.body.bankname;
+    const ifsc = request.body.ifsc;
+    const salary = request.body.salary;
+    const tax = request.body.tax;
+
+    pool.query(
+      "INSERT INTO salary VALUES ($1, $2, $3, $4, $5, $6)",[id, accno, bankname, ifsc, salary, tax],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
   const gethruser = (request, response) => {
 
     // console.log(request.body)
     // const id = request.body.id;
   
     pool.query(
-      "SELECT * from currwork JOIN employeedetail ON currwork.id = employeedetail.id",
+      "SELECT * from employeedetail JOIN currwork ON currwork.id = employeedetail.id",
       (error, results) => {
         if (error) {
           throw error;
@@ -327,7 +493,46 @@ const getLogin = (request, response) => {
 
     // console.log(request.body)
     pool.query(
-      "SELECT * from salary JOIN employeedetail ON salary.id = employeedetail.id",
+      "SELECT * from employeedetail JOIN salary ON salary.id = employeedetail.id",
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getprojbid = (request, response) => {
+
+    // console.log(request.body)
+
+    pool.query(
+      "SELECT * FROM projbid",
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getnewemp = (request, response) => {
+    pool.query(
+      "SELECT id FROM employeedetail EXCEPT select id FROM currwork",
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
+  const getnewempsal = (request, response) => {
+    pool.query(
+      "SELECT id FROM employeedetail EXCEPT select id FROM salary",
       (error, results) => {
         if (error) {
           throw error;
@@ -345,6 +550,9 @@ const getLogin = (request, response) => {
     getPortalMaster,
     getAssign,
     getApprove,
+    getUpdate,
+    getUpdatepos,
+    getUpdatedep,
     getDrop,
     getDeleteleave,
     getempdetail,
@@ -354,6 +562,15 @@ const getLogin = (request, response) => {
     getleaveapp,
     getleaveapphr,
     getleaveappsubmit,
+    getpersoinfosubmit,
+    getedusubmit,
+    getdepsubmit,
+    getexpsubmit,
+    getcurrworksubmit,
+    getsalsubmit,
     gethruser,
     getsal,
+    getprojbid,
+    getnewemp,
+    getnewempsal,
   }

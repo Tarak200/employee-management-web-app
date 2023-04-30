@@ -9,7 +9,7 @@ export const HrNavbar = ({logoutAction}) => {
           <Link to='/employee'>User</Link>
           <Link to='/salary'>Salery</Link>
           <Link to='/leave-application-hr'>Leave Application</Link>
-          <Link to='/company'>Company</Link>
+          {/* <Link to='/company'>Company</Link> */}
           <Link to='/role'>Role</Link>
           <Link to='/position'>Position</Link>
           <Link to='/department'>Department</Link>

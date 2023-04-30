@@ -46,6 +46,9 @@ app.post("/registration", db.getRegistration);
 app.get("/portalmaster", db.getPortalMaster);
 app.post("/assign", db.getAssign);
 app.post("/approve", db.getApprove);
+app.post("/update", db.getUpdate);
+app.post("/updatepos", db.getUpdatepos);
+app.post("/updatedep", db.getUpdatedep);
 app.post("/drop", db.getDrop);
 app.post("/deleteleave", db.getDeleteleave);
 app.post("/empdetail", db.getempdetail);
@@ -55,8 +58,17 @@ app.post("/workexp", db.getworkexp);
 app.post("/leaveapp", db.getleaveapp);
 app.post("/leaveapphr", db.getleaveapphr);
 app.post("/leaveappsubmit", db.getleaveappsubmit);
+app.post("/persoinfosubmit", db.getpersoinfosubmit);
+app.post("/edusubmit", db.getedusubmit);
+app.post("/depsubmit", db.getdepsubmit);
+app.post("/expsubmit", db.getexpsubmit);
+app.post("/currworksubmit", db.getcurrworksubmit);
+app.post("/salsubmit", db.getsalsubmit);
 app.post("/hruser", db.gethruser);
 app.post("/salary", db.getsal);
+app.post("/projbid", db.getprojbid);
+app.get("/newemp", db.getnewemp);
+app.get("/newempsal", db.getnewempsal);
 
 
 app.listen(port, () => {

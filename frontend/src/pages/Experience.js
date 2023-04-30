@@ -9,6 +9,12 @@ const Experience = () => {
   const [loginStatus, setloginStatus] = useState(false);
   const [Role,setRole] = useState("");
   const [data, setData] = useState([]);
+  const [company,setcompany] = useState("");
+  const [designation,setdesignation] = useState("");
+  const [joindate,setjoindate] = useState("");
+  const [enddate,setendate] = useState("");
+  const [id, setId] = useState("");
+
 
   const Table = (e) => {
     const data = e.d;
@@ -45,6 +51,10 @@ const Experience = () => {
     navigate("/");
   }
 
+  const refreshOnSpot = () =>{
+    window.location.reload(true);
+  }
+
   const fetchworkexp = async (e)=>{
     Axios.post("http://localhost:3001/workexp", {id : e}).then((res)=>{
       setData(res.data);
@@ -61,6 +71,31 @@ const Experience = () => {
     }); 
     };
 
+  const submitHandler = (e) => {
+      e.preventDefault();
+      Axios.post("http://localhost:3001/expsubmit", {
+        id: id,
+        company: company,
+        designation: designation,
+        joindate: joindate,
+        enddate: enddate,
+      }).then((response) => {
+        console.log(response);
+        fetchworkexp(response.data.id);
+        setcompany("");
+        setdesignation("");
+        setjoindate("");
+        setendate("");
+        refreshOnSpot();
+      });
+    };
+
+  const [showForm, setShowForm] = useState(false);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   useEffect(() => {
     Axios.get("http://localhost:3001/login-session").then((response) => {
         console.log(response);
@@ -69,6 +104,7 @@ const Experience = () => {
         setloginStatus(true);
         setRole(response.data.user.rows[0].role);
         fetchworkexp(response.data.user.rows[0].id);
+        setId(response.data.user.rows[0].id);
       }
     });
   }, []);
@@ -81,6 +117,54 @@ const Experience = () => {
         <div>
           <h2>Experience</h2>
           <Table d={data}/>
+          <a href="#" onClick={toggleForm}>Add/Update Previous Experience Information Details</a>
+          {showForm && (
+              <form onSubmit={submitHandler}>
+                <div>
+                  <label htmlFor="company">Name of the Company</label>
+                  <textarea
+                    id="company"
+                    name="company"
+                    rows="1"
+                    cols="20"
+                    value={company}
+                    onChange={(e) => setcompany(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="designation">Designation</label>
+                  <textarea
+                    id="designation"
+                    name="designation"
+                    rows="1"
+                    cols="20"
+                    value={designation}
+                    onChange={(e) => setdesignation(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="joindate">Date Of Joining</label>
+                  <input
+                    type="date"
+                    id="joindate"
+                    name="joindate"
+                    value={joindate}
+                    onChange={(e) => setjoindate(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="endate">Date Of Leaving</label>
+                  <input
+                    type="date"
+                    id="endate"
+                    name="endate"
+                    value={enddate}
+                    onChange={(e) => setendate(e.target.value)}
+                  />
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+              )}
         </div>
         </>)
       :
