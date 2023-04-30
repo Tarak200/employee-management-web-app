@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import "../components/css/EmpNavbar.css"
 
 export const HrNavbar = ({logoutAction}) => {
   return (

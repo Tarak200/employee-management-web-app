@@ -69,6 +69,7 @@ app.post("/salary", db.getsal);
 app.post("/projbid", db.getprojbid);
 app.get("/newemp", db.getnewemp);
 app.get("/newempsal", db.getnewempsal);
+app.get("/exiemp", db.getexiemp);
 
 
 app.listen(port, () => {

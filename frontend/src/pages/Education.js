@@ -112,9 +112,10 @@ const Education = () => {
       {loginStatus ?
         (<>
         <EmpNavbar logoutAction={logout}/>
-        <div>
+        <div className="r1">
           <h2>Education</h2>
           <Table d={data}/>
+          <br></br>
           <a href="#" onClick={toggleForm}>Add/Update Education Information Details</a>
           {showForm && (
               <form onSubmit={submitHandler}>

@@ -114,9 +114,10 @@ const Experience = () => {
       {loginStatus ?
         (<>
         <EmpNavbar logoutAction={logout}/>
-        <div>
+        <div className="r1">
           <h2>Experience</h2>
           <Table d={data}/>
+          <br></br>
           <a href="#" onClick={toggleForm}>Add/Update Previous Experience Information Details</a>
           {showForm && (
               <form onSubmit={submitHandler}>

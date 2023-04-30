@@ -109,7 +109,7 @@ const Role = () => {
         Role === "admin" ? (
           <>
             <AdminNavbar logoutAction={logout} />
-            <div>
+            <div className="r1">
               <h2>Role-Admin</h2>
               <Table d={data} />
             </div>
@@ -117,7 +117,7 @@ const Role = () => {
         ) : Role === "hr" ? (
           <>
             <HrNavbar logoutAction={logout} />
-            <div>
+            <div className="r1">
               <h2>Role-Hr</h2>
               <Table d={data} />
             </div>

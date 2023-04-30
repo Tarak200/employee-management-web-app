@@ -112,9 +112,10 @@ const Dependents = () => {
       {loginStatus ?
         (<>
         <EmpNavbar logoutAction={logout}/>
-        <div>
+        <div className="r1">
           <h2>Dependents</h2>
           <Table d={data}/>
+          <br></br>
           <a href="#" onClick={toggleForm}>Add/Update Dependents Information Details</a>
           {showForm && (
               <form onSubmit={submitHandler}>

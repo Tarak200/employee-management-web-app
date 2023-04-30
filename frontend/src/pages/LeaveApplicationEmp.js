@@ -124,9 +124,10 @@ const LeaveApplicationEmp = () => {
       {loginStatus ? (
         <>
           <EmpNavbar logoutAction={logout} />
-          <div>
+          <div className="r1">
             <h2>Employee Leave Application</h2>
             <Table d={data} />
+            <br></br>
             <a href="#" onClick={toggleForm}>New Leave Application Form</a>
             {showForm && (
               <form onSubmit={submitHandler}>

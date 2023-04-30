@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from 'react'
 import Axios from 'axios'
 import { AdminNavbar } from './AdminNavbar';
+import "../components/css/button.css"
 
 const AdminDashboard = ({logoutAction}) => {
 

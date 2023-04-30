@@ -9,6 +9,7 @@ const PortalMaster = () => {
   const [loginStatus, setloginStatus] = useState(false);
   const [Role,setRole] = useState("");
   const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
 
   const Table = (e) => {
     const data = e.d;
@@ -55,6 +56,32 @@ const PortalMaster = () => {
     )
   }
 
+  const Table1 = (f) => {
+    const data1 = f.d1;
+
+    return (
+      <table className="t1">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data1.map((a, index) => {
+            return (
+              <tr key={index}>
+                <td>{a.id}</td>
+                <td>
+                <button onClick={() => drop(a.id)}>Drop</button>
+              </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  };
+
   const navigate = useNavigate();
   const refreshToHome = () =>{
     navigate("/");
@@ -81,6 +108,12 @@ const PortalMaster = () => {
       });
     }
 
+    const fetchexiemp = async (f)=>{
+      Axios.get("http://localhost:3001/exiemp").then((res)=>{
+        setData1(res.data);
+      });
+    }
+
     const assign = async (id, role) => {
       Axios.post("http://localhost:3001/assign", { id : id, role : role}).then((res)=>{
         console.log(res.data);
@@ -103,6 +136,7 @@ const PortalMaster = () => {
         setloginStatus(true);
         setRole(response.data.user.rows[0].role);
         fetchPortalInfo(response.data.user.rows[0].id);
+        fetchexiemp(response.data.user.rows[0].id);
       }
     });
   }, []);
@@ -112,9 +146,12 @@ const PortalMaster = () => {
       {loginStatus ?
         (<>
         <AdminNavbar logoutAction={logout}/>
-        <div>
+        <div className="r1">
           <h2>Portal Master</h2>
           <Table d={data}/>
+          <br></br>
+          <h3>Existing Employees</h3>
+          <Table1 d1={data1}/>
         </div>
         </>)
       :

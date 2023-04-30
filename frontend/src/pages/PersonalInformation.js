@@ -130,9 +130,10 @@ const PersonalInformation = () => {
       {loginStatus ?
         (<>
         <EmpNavbar logoutAction={logout}/>
-        <div>
+        <div className="r1">
           <h2>Personal Information</h2>
           <Table d={data}/>
+          <br></br>
           <a href="#" onClick={toggleForm}>Add/Update Personal Information Details</a>
           {showForm && (
               <form onSubmit={submitHandler}>

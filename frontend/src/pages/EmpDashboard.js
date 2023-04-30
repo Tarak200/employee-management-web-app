@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Axios from 'axios'
 import { EmpNavbar } from './EmpNavbar';
+import "../components/css/button.css"
 
 const EmpDashboard = () => {
 

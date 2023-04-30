@@ -133,7 +133,7 @@ const LeaveApplicationHr = () => {
       {loginStatus ? (
         <>
           <HrNavbar logoutAction={logout} />
-          <div>
+          <div className="r1">
             <h2>HR Leave Application Portal</h2>
             <Table d={data} />
           </div>

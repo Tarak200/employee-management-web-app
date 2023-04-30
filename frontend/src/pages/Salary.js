@@ -153,10 +153,12 @@ const Salary = () => {
       {loginStatus ?
         (<>
         <HrNavbar logoutAction={logout}/>
-        <div>
+        <div className="r1">
           <h2>Salary</h2>
           <Table d={data}/>
+          <br></br>
           <Table1 d1={data1} />
+          <br></br>
           <a href="#" onClick={toggleForm}>
               Add/Update Salary for New Employees
             </a>

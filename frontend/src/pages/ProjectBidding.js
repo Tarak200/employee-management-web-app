@@ -83,7 +83,7 @@ const ProjectBidding = () => {
       {loginStatus ?
         (<>
         <AdminNavbar logoutAction={logout}/>
-        <div>
+        <div className="r1">
           <h2>Project Bidding</h2>
           <Table d={data}/>
         </div>

@@ -542,6 +542,18 @@ const getLogin = (request, response) => {
     );
   };
 
+  const getexiemp = (request, response) => {
+    pool.query(
+      "SELECT * FROM user_password where verified = '1' and role = 'emp'",
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
   module.exports = {
     getLogin,
     getLoginSession,
@@ -573,4 +585,5 @@ const getLogin = (request, response) => {
     getprojbid,
     getnewemp,
     getnewempsal,
+    getexiemp,
   }
