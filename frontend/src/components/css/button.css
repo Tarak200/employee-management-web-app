@@ -68,8 +68,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 15vh;
-    margin-left: 50px;
+    margin-top: 10vh;
+    /* margin-left: 50px; */
     height: auto;
     font-family: 'Josefin Sans', sans-serif;
     font-family: 'Oswald', sans-serif;
@@ -86,7 +86,7 @@ body {
   
   .t1 th,
   .t1 td {
-    padding: 5px;
+    padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }

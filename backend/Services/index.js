@@ -64,6 +64,7 @@ app.post("/depsubmit", db.getdepsubmit);
 app.post("/expsubmit", db.getexpsubmit);
 app.post("/currworksubmit", db.getcurrworksubmit);
 app.post("/salsubmit", db.getsalsubmit);
+app.post("/projbidsubmit", db.getprojbidsubmit);
 app.post("/hruser", db.gethruser);
 app.post("/salary", db.getsal);
 app.post("/projbid", db.getprojbid);

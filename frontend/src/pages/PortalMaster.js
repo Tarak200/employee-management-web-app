@@ -64,6 +64,7 @@ const PortalMaster = () => {
         <thead>
           <tr>
             <th>Employee ID</th>
+            <th>Role</th>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +72,7 @@ const PortalMaster = () => {
             return (
               <tr key={index}>
                 <td>{a.id}</td>
+                <td>{a.role}</td>
                 <td>
                 <button onClick={() => drop(a.id)}>Drop</button>
               </td>
@@ -150,7 +152,7 @@ const PortalMaster = () => {
           <h2>Portal Master</h2>
           <Table d={data}/>
           <br></br>
-          <h3>Existing Employees</h3>
+          <h3>Existing Users</h3>
           <Table1 d1={data1}/>
         </div>
         </>)

@@ -9,6 +9,11 @@ const ProjectBidding = () => {
   const [loginStatus, setloginStatus] = useState(false);
   const [Role,setRole] = useState("");
   const [data, setData] = useState([]);
+  const [projtitle,setprojtitle] = useState("");
+  const [portal,setportal] = useState("");
+  const [esttime,setesttime] = useState("");
+  const [estcost,setestcost] = useState("");
+  const [remark,setremark] = useState("");
 
   const Table = (e) => {
     const data = e.d;
@@ -66,6 +71,32 @@ const ProjectBidding = () => {
     }); 
     };
 
+    const submitHandler = (e) => {
+    e.preventDefault();
+    Axios.post("http://localhost:3001/projbidsubmit", {
+      projtitle: projtitle,
+      portal: portal,
+      esttime: esttime,
+      estcost: estcost,
+      remark: remark,
+    }).then((response) => {
+      console.log(response);
+      fetchprojbid(response.data.id);
+      setprojtitle("");
+      setportal("");
+      setesttime("");
+      setestcost("");
+      setremark("");
+      refreshOnSpot();
+    });
+  };
+
+  const [showForm, setShowForm] = useState(false);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   useEffect(() => {
     Axios.get("http://localhost:3001/login-session").then((response) => {
         console.log(response);
@@ -86,6 +117,68 @@ const ProjectBidding = () => {
         <div className="r1">
           <h2>Project Bidding</h2>
           <Table d={data}/>
+          <br></br>
+          <a href="#" onClick={toggleForm}>Add/Update Project Bidding Details</a>
+          {showForm && (
+              <form onSubmit={submitHandler}>
+                <div>
+                  <label htmlFor="projttitle">Project Title</label>
+                  <textarea
+                    id="projtitle"
+                    name="projtitle"
+                    rows="1"
+                    cols="20"
+                    value={projtitle}
+                    onChange={(e) => setprojtitle(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="portal">Portal</label>
+                  <textarea
+                    id="portal"
+                    name="portal"
+                    rows="1"
+                    cols="20"
+                    value={portal}
+                    onChange={(e) => setportal(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="esttime">Estimated Time</label>
+                  <textarea
+                    id="esttime"
+                    name="esttime"
+                    rows="1"
+                    cols="20"
+                    value={esttime}
+                    onChange={(e) => setesttime(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="estcost">Estimated Cost</label>
+                  <textarea
+                    id="estcost"
+                    name="estcost"
+                    rows="1"
+                    cols="20"
+                    value={estcost}
+                    onChange={(e) => setestcost(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="remark">Remark</label>
+                  <textarea
+                    id="remark"
+                    name="remark"
+                    rows="1"
+                    cols="20"
+                    value={remark}
+                    onChange={(e) => setremark(e.target.value)}
+                  />
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+              )}
         </div>
         </>)
       :

@@ -473,6 +473,26 @@ const getLogin = (request, response) => {
     );
   };
 
+  const getprojbidsubmit = (request, response) => {
+
+    // console.log(request.body)
+    const projtitle = request.body.projtitle;
+    const portal = request.body.portal;
+    const esttime = request.body.esttime;
+    const estcost = request.body.estcost;
+    const remark = request.body.remark;
+
+    pool.query(
+      "INSERT INTO projbid VALUES ($1, $2, $3, $4, $5)",[projtitle, portal, esttime, estcost, remark],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(200).json(results.rows);
+      }
+    );
+  };
+
   const gethruser = (request, response) => {
 
     // console.log(request.body)
@@ -544,7 +564,7 @@ const getLogin = (request, response) => {
 
   const getexiemp = (request, response) => {
     pool.query(
-      "SELECT * FROM user_password where verified = '1' and role = 'emp'",
+      "SELECT * FROM user_password where verified = '1'",
       (error, results) => {
         if (error) {
           throw error;
@@ -580,6 +600,7 @@ const getLogin = (request, response) => {
     getexpsubmit,
     getcurrworksubmit,
     getsalsubmit,
+    getprojbidsubmit,
     gethruser,
     getsal,
     getprojbid,
